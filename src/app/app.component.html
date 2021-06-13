@@ -1,7 +1,8 @@
 <div class="dogs">
   <div class="dogs-show-btn">
     <button 
-    mat-button
+    color="primary"
+    mat-raised-button
     (click)="showDogs = !showDogs">Show Dogs</button>
   </div>
   <div *ngIf="showDogs" class="dogs-list">
