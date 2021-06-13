@@ -1,11 +1,14 @@
 <div class="dogs">
   <div class="dogs-show-btn">
+    <input
+    [(ngModel)]="breedName"
+    placeholder="search for a breed">
     <button 
     color="primary"
     mat-raised-button
-    (click)="showDogs = !showDogs">Show Dogs</button>
+    (click)="getDog()">Show Dogs</button>
   </div>
-  <div *ngIf="showDogs" class="dogs-list">
+  <div class="dogs-list">
     <p *ngFor="let dog of dogs">
       {{dog}}
     </p>

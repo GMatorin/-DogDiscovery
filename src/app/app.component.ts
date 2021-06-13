@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DogApiService } from './services/dog-api.service';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +8,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'dog-discovery';
-
-  dogs: string[] = ['Borzoi', 'Husky'];
-
+  breedName: string = '';
+  dogs: string[] = [];
   showDogs = false;
+
+  constructor(private dogApiService: DogApiService) {}
+
+  getDog() {
+    this.dogApiService.getDogInfoByBreed(this.breedName);
+  }
 }
