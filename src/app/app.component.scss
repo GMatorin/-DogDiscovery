@@ -1,0 +1,12 @@
+.dogs {
+  &-show-btn {
+    display: flex;
+    padding-top: 15px;
+    justify-content: center;
+  }
+
+  &-list {
+    text-align: center;
+    background-color: rgb(205, 228, 221);
+  }
+}
