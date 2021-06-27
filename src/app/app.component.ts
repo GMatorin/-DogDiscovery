@@ -8,13 +8,4 @@ import { DogApiService } from './services/dog-api.service';
 })
 export class AppComponent {
   title = 'dog-discovery';
-  breedName: string = '';
-  dogs: string[] = [];
-  showDogs = false;
-
-  constructor(private dogApiService: DogApiService) {}
-
-  getDog() {
-    this.dogApiService.getDogInfoByBreed(this.breedName);
-  }
 }
