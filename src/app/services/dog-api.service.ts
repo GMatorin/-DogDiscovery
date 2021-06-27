@@ -7,10 +7,14 @@ import {
 import { partApi2 } from 'src/shared/part-api2';
 import { partApi } from 'src/shared/part-api';
 import { Observable, of } from 'rxjs';
+import { Breed } from 'src/shared/models/breed.model';
 
 @Injectable({ providedIn: 'root' })
 export class DogApiService {
-  url = 'https://api.thedogapi.com/v1/breeds/search?q=:breed';
+  urls = {
+    byBreed: 'https://api.thedogapi.com/v1/breeds/search?q=:breed',
+    allBreeds: 'https://api.thedogapi.com/v1/breeds',
+  };
   private klych: string;
 
   constructor(private http: HttpClient) {
@@ -18,7 +22,7 @@ export class DogApiService {
   }
 
   getDogInfoByBreed(breed: string): Observable<any> {
-    const url = this.url.replace(':breed', breed.toString());
+    const url = this.urls.byBreed.replace(':breed', breed.toString());
     const header: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
       'x-api-key': this.klych,
@@ -28,6 +32,15 @@ export class DogApiService {
     //   console.log(JSON.stringify(info));
     // });
     return of(response);
+  }
+
+  getAllBreedsInfo(): Observable<Breed[]> {
+    const header: HttpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'x-api-key': this.klych,
+    });
+
+    return this.http.get<Breed[]>(this.urls.allBreeds, { headers: header });
   }
 }
 
