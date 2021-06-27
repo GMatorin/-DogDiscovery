@@ -1,16 +1,2 @@
-<div class="dogs">
-  <div class="dogs-show-btn">
-    <input
-    [(ngModel)]="breedName"
-    placeholder="search for a breed">
-    <button 
-    color="primary"
-    mat-raised-button
-    (click)="getDog()">Show Dogs</button>
-  </div>
-  <div class="dogs-list">
-    <p *ngFor="let dog of dogs">
-      {{dog}}
-    </p>
-  </div>
-</div>
+<app-header></app-header>
+<router-outlet></router-outlet>

@@ -1,0 +1,17 @@
+<div class="search">
+  <h1 class="search-title">Dig & Discover Your Ideal Dog Breeds</h1>
+  <div class="search-action">
+    <input
+    class="search-action__input"
+    [(ngModel)]="breedName"
+    placeholder="Search for a breed"
+    (keyup.enter)="getDog()"
+    >
+    <!-- <button 
+    class="search-action__button"
+    color="primary"
+    mat-raised-button
+    (click)="getDog()">Show Dogs</button> -->
+  </div>
+</div>
+<img src="../../assets/img/dog-main.png" alt="">
