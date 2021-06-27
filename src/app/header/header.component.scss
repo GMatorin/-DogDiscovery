@@ -1,0 +1,49 @@
+@import "../../shared/configs";
+
+.header {
+  display: flex;
+  height: 113px;
+  background-color: $primary;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-bottom: 11px;
+
+  &-title {
+    margin: 0;
+    font-weight: 400;
+    font-size: 48px;
+    margin-left: 19px;
+  }
+
+  &-actions {
+    ::ng-deep.mat-tab-label,
+    ::ng-deep.mat-tab-label-active {
+      font-size: $f-size-large;
+    }
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    &__search {
+      margin-right: 87px;
+      .mat-ripple {
+        &:first-child {
+          margin-right: 25px;
+        }
+      }
+    }
+
+    &__auth {
+      margin-right: 37px;
+      button {
+        font-size: $f-size-main !important;
+        &:first-child {
+          margin-right: 25px;
+        }
+        width: 125px;
+        height: 40px;
+      }
+    }
+  }
+}

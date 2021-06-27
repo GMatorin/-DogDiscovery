@@ -1,0 +1,30 @@
+@import "../../shared/configs";
+
+.search {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &-title {
+    margin: 218px 0px 30px 0px;
+    font-size: $f-size-title;
+    font-weight: 300;
+  }
+  &-action {
+    display: flex;
+    justify-content: center;
+
+    &__input {
+      width: 310px;
+      height: 35px;
+      font-size: $f-size-main;
+    }
+  }
+}
+img {
+  position: absolute;
+  right: 21px;
+  width: 500px;
+  bottom: 0px;
+}
