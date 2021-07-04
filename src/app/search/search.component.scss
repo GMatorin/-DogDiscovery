@@ -11,10 +11,13 @@
     font-size: $f-size-title;
     font-weight: 300;
   }
-  &-action {
+  &-form {
     display: flex;
     justify-content: center;
 
+    &__field {
+      width: 310px;
+    }
     &__input {
       width: 310px;
       height: 35px;
