@@ -8,6 +8,7 @@ export class Breed {
   id: number;
   life_span: string;
   name: string;
+  origin: string;
   reference_image_id: string;
   temperament: string;
   weight: {
@@ -30,7 +31,8 @@ export class Breed {
     weight: {
       imperial: string;
       metric: string;
-    }
+    },
+    origin: string
   ) {
     this.bred_for = bred_for;
     this.breed_group = breed_group;
@@ -41,5 +43,6 @@ export class Breed {
     this.reference_image_id = reference_image_id;
     this.temperament = temperament;
     this.weight = weight;
+    this.origin = origin;
   }
 }

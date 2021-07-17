@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { DogApiService } from 'src/app/services/dog-api.service';
+import { MockDbService } from 'src/app/services/mock-db.service';
+import { Breed } from 'src/shared/models/breed.model';
 
 @Component({
   templateUrl: './dog-breed.component.html',
@@ -12,21 +14,18 @@ export class DogBreedComponent implements OnInit {
   public breedName: string = '';
   public image$: Observable<string> = new Observable();
   public imageUrl: string = '';
+  public breedInfo$: Observable<Breed> = new Observable();
 
   constructor(
     private route: ActivatedRoute,
-    private dogApiService: DogApiService
-  ) {
-    console.log("I'm BUUILD");
-  }
+    private dogApiService: DogApiService,
+    private mockDbService: MockDbService
+  ) {}
 
   ngOnInit() {
-    this.image$ = this.route.paramMap.pipe(
-      switchMap((params) => {
-        this.breedName = params.get('breedName') ?? '';
-        return this.dogApiService.getDogPhoto(this.breedName);
-      })
-    );
+    this.breedName = this.route.snapshot.params['breedName'];
+    this.image$ = this.dogApiService.getDogPhoto(this.breedName);
+    this.breedInfo$ = this.mockDbService.getBreedInfo(this.breedName);
   }
 
   // this.heroes$ = this.route.paramMap.pipe(

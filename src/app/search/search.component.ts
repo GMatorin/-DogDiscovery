@@ -24,15 +24,9 @@ export class SearchComponent implements OnInit {
     string[]
   >([]);
 
-  constructor(
-    private dogApiService: DogApiService,
-    private mockDbService: MockDbService,
-    private router: Router,
-    private route: ActivatedRoute
-  ) {}
+  constructor(private mockDbService: MockDbService, private router: Router) {}
 
   ngOnInit() {
-    this.mockDbService.getAllBreedInfos();
     this.breedNames = this.mockDbService.getBreedNames();
 
     this.filteredBreedNames = this.filteredBreedNamesCache.asObservable();

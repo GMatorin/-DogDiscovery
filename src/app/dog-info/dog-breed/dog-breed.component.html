@@ -1,36 +1,41 @@
-<div class="breed-left">
-    <div class="breed-left__search">
-        <p>
-            return to search
-        </p>
-    </div>
-    <h2>DogName</h2>
-
-    <ng-container *ngIf="image$ | async as image">
-        <img src="{{image}}" alt="">
-    </ng-container>
-    
-</div>
-
-<div class="breed-right"> 
-    <p>Temperament: funny</p>
-    <p>Breed for: run</p>
-    <p>Origin: Novosib</p>
-    <div class="breed-right__details">
-        <div class="breed-right__details-left">
-            <p>Breed Group: sight</p>
-            <p>Height: 72cm</p>
+<div class="breed">
+    <div class="breed-head">
+        <div class="breed-head__back">
+            <p>
+                return to search
+            </p>
         </div>
-        <div class="breed-right__details-right">
-            <p>Life Span: 10-13years</p>
-            <p>Weight: 23-27 kg</p>
-        </div>
+        <h2>{{breedName}}</h2>
     </div>
-    <div class="breed-right__form">
-        <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Leave a comment</mat-label>
-            <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
-          </mat-form-field>
-          <button>Sub</button>
+    <div class="breed-info">
+        <div class="breed-info__left">
+
+            <ng-container *ngIf="image$ | async as image">
+                <img class="dog-image" src="{{image}}" alt="">
+            </ng-container>
+            
+        </div>
+
+        <div *ngIf="breedInfo$ | async as breedInfo" class="breed-info__right"> 
+            <p class="temperament" *ngIf="breedInfo.temperament"><b>Temperament:</b> {{breedInfo.temperament}}</p>
+            <p *ngIf="breedInfo.bred_for"><b>Temperament:</b> {{breedInfo.bred_for}}</p>
+            <p *ngIf="breedInfo.origin"><b>Origin:</b> {{breedInfo.origin}}</p>
+            <div class="breed-info__right-details">
+                <div class="breed-info__right-details-left">
+                    <p *ngIf="breedInfo.breed_group"><b>Breed Group:</b> {{breedInfo.breed_group}}</p>
+                    <p *ngIf="breedInfo.height.imperial"><b>Height:</b> {{breedInfo.height.imperial}}</p>
+                </div>
+                <div class="breed-info__right-details-right">
+                    <p *ngIf="breedInfo.life_span"><b>Life Span:</b> {{breedInfo.life_span}} years</p>
+                    <p *ngIf="breedInfo.weight.imperial"><b>Weight:</b> {{breedInfo.weight.imperial}}</p>
+                </div>
+            </div>
+            <div class="breed-info__right-form">
+                <div class="form-field">
+                    <textarea class="form-field__textarea"></textarea>
+                    <button>Sub</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
