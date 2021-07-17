@@ -1,0 +1,36 @@
+<div class="breed-left">
+    <div class="breed-left__search">
+        <p>
+            return to search
+        </p>
+    </div>
+    <h2>DogName</h2>
+
+    <ng-container *ngIf="image$ | async as image">
+        <img src="{{image}}" alt="">
+    </ng-container>
+    
+</div>
+
+<div class="breed-right"> 
+    <p>Temperament: funny</p>
+    <p>Breed for: run</p>
+    <p>Origin: Novosib</p>
+    <div class="breed-right__details">
+        <div class="breed-right__details-left">
+            <p>Breed Group: sight</p>
+            <p>Height: 72cm</p>
+        </div>
+        <div class="breed-right__details-right">
+            <p>Life Span: 10-13years</p>
+            <p>Weight: 23-27 kg</p>
+        </div>
+    </div>
+    <div class="breed-right__form">
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Leave a comment</mat-label>
+            <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+          </mat-form-field>
+          <button>Sub</button>
+    </div>
+</div>

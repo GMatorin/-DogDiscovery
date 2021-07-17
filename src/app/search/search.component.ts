@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { filter, map, startWith, switchMap } from 'rxjs/operators';
 import { DogApiService } from '../services/dog-api.service';
@@ -25,7 +26,9 @@ export class SearchComponent implements OnInit {
 
   constructor(
     private dogApiService: DogApiService,
-    private mockDbService: MockDbService
+    private mockDbService: MockDbService,
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -46,6 +49,8 @@ export class SearchComponent implements OnInit {
 
   openBreedInfo() {
     console.log(this.formControl.value);
+
+    this.router.navigate(['/dog-breed', { breedName: this.formControl.value }]);
   }
 
   refreshFormControl() {

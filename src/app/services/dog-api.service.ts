@@ -8,21 +8,24 @@ import { partApi2 } from 'src/shared/part-api2';
 import { partApi } from 'src/shared/part-api';
 import { Observable, of } from 'rxjs';
 import { Breed } from 'src/shared/models/breed.model';
-
+import { map } from 'rxjs/operators';
 @Injectable({ providedIn: 'root' })
 export class DogApiService {
   urls = {
     byBreed: 'https://api.thedogapi.com/v1/breeds/search?q=:breed',
     allBreeds: 'https://api.thedogapi.com/v1/breeds',
+    image: 'https://pixabay.com/api/?key=:key&q=:breed&per_page=3',
   };
   private klych: string;
+  private klych2: string;
 
   constructor(private http: HttpClient) {
-    this.klych = partApi2[1] + partApi + partApi2[0];
+    this.klych = partApi2[1] + partApi[0] + partApi2[0];
+    this.klych2 = partApi[1] + partApi2[3] + partApi2[2];
   }
 
   getDogInfoByBreed(breed: string): Observable<any> {
-    const url = this.urls.byBreed.replace(':breed', breed.toString());
+    const url = this.urls.byBreed.replace(':breed', breed);
     const header: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
       'x-api-key': this.klych,
@@ -41,6 +44,24 @@ export class DogApiService {
     });
 
     return this.http.get<Breed[]>(this.urls.allBreeds, { headers: header });
+  }
+
+  getDogPhoto(breed: string): Observable<string> {
+    const url = this.urls.image
+      .replace(':key', this.klych2)
+      .replace(':breed', breed);
+    const retVal = this.http.get<any>(url);
+    retVal.subscribe((val) => {
+      debugger;
+      console.log(val);
+    });
+    return retVal.pipe(
+      map((imagesResponse) => {
+        debugger;
+        const str: string = imagesResponse.hits[0].largeImageURL;
+        return imagesResponse.hits[0].largeImageURL;
+      })
+    );
   }
 }
 

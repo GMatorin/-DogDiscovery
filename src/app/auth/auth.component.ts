@@ -7,7 +7,9 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent implements OnInit {
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(private route: ActivatedRoute, private router: Router) {
+    console.log('BUILD AUTH');
+  }
 
   ngOnInit(): void {}
 
