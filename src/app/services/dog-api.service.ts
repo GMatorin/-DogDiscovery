@@ -50,15 +50,9 @@ export class DogApiService {
     const url = this.urls.image
       .replace(':key', this.klych2)
       .replace(':breed', breed);
-    const retVal = this.http.get<any>(url);
-    retVal.subscribe((val) => {
-      debugger;
-      console.log(val);
-    });
-    return retVal.pipe(
+
+    return this.http.get<any>(url).pipe(
       map((imagesResponse) => {
-        debugger;
-        const str: string = imagesResponse.hits[0].largeImageURL;
         return imagesResponse.hits[0].largeImageURL;
       })
     );

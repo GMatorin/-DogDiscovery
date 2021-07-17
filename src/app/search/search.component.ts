@@ -32,6 +32,7 @@ export class SearchComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.mockDbService.getAllBreedInfos();
     this.breedNames = this.mockDbService.getBreedNames();
 
     this.filteredBreedNames = this.filteredBreedNamesCache.asObservable();

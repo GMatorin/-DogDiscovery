@@ -27,12 +27,6 @@ export class DogBreedComponent implements OnInit {
         return this.dogApiService.getDogPhoto(this.breedName);
       })
     );
-
-    this.image$.subscribe((val) => {
-      debugger;
-      this.imageUrl = val;
-      console.log(val);
-    });
   }
 
   // this.heroes$ = this.route.paramMap.pipe(
