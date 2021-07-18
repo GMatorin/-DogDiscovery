@@ -12,9 +12,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { SearchComponent } from './search/search.component';
 import { HeaderComponent } from './header/header.component';
 import { MatInputModule } from '@angular/material/input';
+import { ExploreComponent } from './explore/explore.component';
 
 @NgModule({
-  declarations: [AppComponent, SearchComponent, HeaderComponent],
+  declarations: [
+    AppComponent,
+    SearchComponent,
+    HeaderComponent,
+    ExploreComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

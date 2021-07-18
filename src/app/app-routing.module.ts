@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthModule } from './auth/auth.module';
 import { DogInfoModule } from './dog-info/dog-info.module';
+import { ExploreComponent } from './explore/explore.component';
 import { SearchComponent } from './search/search.component';
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
       import('../app/dog-info/dog-info.module').then((m) => m.DogInfoModule),
   },
   { path: 'dog-search', component: SearchComponent },
+  { path: 'explore', component: ExploreComponent },
   { path: '', redirectTo: 'dog-search', pathMatch: 'full' },
   { path: '**', redirectTo: 'dog-search', pathMatch: 'full' },
 ];

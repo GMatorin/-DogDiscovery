@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { DogApiService } from 'src/app/services/dog-api.service';
@@ -19,13 +19,18 @@ export class DogBreedComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private dogApiService: DogApiService,
-    private mockDbService: MockDbService
+    private mockDbService: MockDbService,
+    private router: Router
   ) {}
 
   ngOnInit() {
     this.breedName = this.route.snapshot.params['breedName'];
     this.image$ = this.dogApiService.getDogPhoto(this.breedName);
     this.breedInfo$ = this.mockDbService.getBreedInfo(this.breedName);
+  }
+
+  navigateToSearch() {
+    this.router.navigate(['dog-search'], { relativeTo: this.route });
   }
 
   // this.heroes$ = this.route.paramMap.pipe(

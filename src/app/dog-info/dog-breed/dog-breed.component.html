@@ -1,7 +1,7 @@
 <div class="breed">
     <div class="breed-head">
         <div class="breed-head__back">
-            <p>
+            <p (click)="navigateToSearch()">
                 return to search
             </p>
         </div>
@@ -18,7 +18,7 @@
 
         <div *ngIf="breedInfo$ | async as breedInfo" class="breed-info__right"> 
             <p class="temperament" *ngIf="breedInfo.temperament"><b>Temperament:</b> {{breedInfo.temperament}}</p>
-            <p *ngIf="breedInfo.bred_for"><b>Temperament:</b> {{breedInfo.bred_for}}</p>
+            <p *ngIf="breedInfo.bred_for"><b>Breed For:</b> {{breedInfo.bred_for}}</p>
             <p *ngIf="breedInfo.origin"><b>Origin:</b> {{breedInfo.origin}}</p>
             <div class="breed-info__right-details">
                 <div class="breed-info__right-details-left">
@@ -26,7 +26,7 @@
                     <p *ngIf="breedInfo.height.imperial"><b>Height:</b> {{breedInfo.height.imperial}}</p>
                 </div>
                 <div class="breed-info__right-details-right">
-                    <p *ngIf="breedInfo.life_span"><b>Life Span:</b> {{breedInfo.life_span}} years</p>
+                    <p *ngIf="breedInfo.life_span"><b>Life Span:</b> {{breedInfo.life_span}}</p>
                     <p *ngIf="breedInfo.weight.imperial"><b>Weight:</b> {{breedInfo.weight.imperial}}</p>
                 </div>
             </div>

@@ -8,6 +8,12 @@
     h2 {
       font-size: 60px;
     }
+
+    &__back {
+      p {
+        cursor: pointer;
+      }
+    }
   }
 
   &-info {
@@ -19,6 +25,7 @@
         object-fit: cover;
         width: 544px;
         height: 482px;
+        border-radius: 5px;
       }
     }
 
