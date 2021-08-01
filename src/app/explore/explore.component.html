@@ -1,0 +1,13 @@
+<div class="explore">
+    <div class="explore-tiles">
+            <ng-container *ngIf="exploreTiles$ | async as tiles">
+                <div *ngFor="let tile of tiles" class="explore-tiles__tile">
+                    <img class="explore-tiles__tile-image" [src]="tile.imageUrl" alt="">
+                    <div class="explore-tiles__tile-info">
+                        <p class="explore-tiles__tile-info__breed">{{tile.breedName}}</p>
+                        <p class="explore-tiles__tile-info__icon">X</p>
+                    </div>
+                </div>
+        </ng-container>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+.explore {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  &-tiles {
+    display: grid;
+    margin-top: 50px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column: 2/8;
+    grid-gap: 70px;
+    &__tile {
+      &-image {
+        width: 100%;
+        min-height: 220px;
+        max-height: 450px;
+        object-fit: cover;
+      }
+      &-info {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+}

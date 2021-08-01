@@ -1,0 +1,59 @@
+@import "../../../shared/configs";
+
+.breed {
+  margin: 50px 136px;
+  font-size: $f-size-middle;
+
+  &-head {
+    h2 {
+      font-size: 60px;
+    }
+
+    &__back {
+      p {
+        cursor: pointer;
+      }
+    }
+  }
+
+  &-info {
+    display: flex;
+    justify-content: space-between;
+
+    &__left {
+      .dog-image {
+        object-fit: cover;
+        width: 544px;
+        height: 482px;
+        border-radius: 5px;
+      }
+    }
+
+    &__right {
+      margin-left: 36px;
+
+      p:first-child {
+        margin-top: 0;
+      }
+
+      &-form {
+        .form-field {
+          display: flex;
+          flex-direction: column;
+          &__textarea {
+            width: 600px;
+            height: 162px;
+          }
+
+          button {
+            margin-top: 24px;
+            width: 145px;
+            height: 56px;
+            justify-self: flex-end;
+            margin-left: auto;
+          }
+        }
+      }
+    }
+  }
+}
