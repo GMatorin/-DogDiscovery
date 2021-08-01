@@ -17,6 +17,7 @@ import {
 import { MockDbService } from '../services/mock-db.service';
 import { DogApiService } from '../services/dog-api.service';
 import { map, mergeMap, takeUntil } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   templateUrl: './explore.component.html',
@@ -28,17 +29,14 @@ export class ExploreComponent implements OnInit, OnDestroy {
 
   public breedNames: string[] = [];
   public exploreTiles$: Observable<IExploreTile[]> = new Observable();
-  // public exploreTiles$: Observable<IExploreTile>[] = new Observable();
 
   constructor(
     private dogApiService: DogApiService,
-    private mockDbService: MockDbService
+    private mockDbService: MockDbService,
+    private router: Router
   ) {}
 
   ngOnInit() {
-    // const breedNames$: Observable<string>[] = this.mockDbService
-    //   .getRandomDogBreeds(5)
-    //   .map((breedName) => of(breedName));
     this.breedNames = this.mockDbService.getRandomDogBreeds(5);
     this.exploreTiles$ = forkJoin(
       this.breedNames.map((names, index) =>
@@ -53,19 +51,10 @@ export class ExploreComponent implements OnInit, OnDestroy {
       )
     );
   }
-  // this.exploreTiles$ = from(breedNames).pipe(
-  //   mergeMap((breed) => {
-  //     const exploreTile: IExploreTile = {
-  //       imageUrl: this.dogApiService.getDogPhoto(breed),
-  //       breedName: breed,
-  //     }
-  //     return {
-  //       imageUrl: this.dogApiService.getDogPhoto(breed),
-  //       breedName: breed,
-  //     } as IExploreTile;
-  //   }),
-  //   takeUntil(this.untilDestroyed$)
-  // );
+
+  toBreedDetails(tile: IExploreTile): void {
+    this.router.navigate(['/dog-breed', { breedName: tile.breedName }]);
+  }
 
   ngOnDestroy() {
     this.untilDestroyed$.next();
