@@ -9,8 +9,10 @@ import { partApi } from 'src/shared/part-api';
 import { Observable, of } from 'rxjs';
 import { Breed } from 'src/shared/models/breed.model';
 import { map } from 'rxjs/operators';
+
 @Injectable({ providedIn: 'root' })
 export class DogApiService {
+  private fallBackImage = '../';
   urls = {
     byBreed: 'https://api.thedogapi.com/v1/breeds/search?q=:breed',
     allBreeds: 'https://api.thedogapi.com/v1/breeds',
@@ -53,7 +55,11 @@ export class DogApiService {
 
     return this.http.get<any>(url).pipe(
       map((imagesResponse) => {
-        return imagesResponse.hits[0].largeImageURL;
+        // imagesResponse.hits[0].webformatURL
+        return (
+          imagesResponse.hits[0]?.largeImageURL ??
+          '../../assets/img/fallBackImg.png'
+        );
       })
     );
   }

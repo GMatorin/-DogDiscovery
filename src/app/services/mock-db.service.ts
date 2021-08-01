@@ -58,4 +58,17 @@ export class MockDbService {
     }
     return of(foundBreed);
   }
+
+  getRandomDogBreeds(breedsNumber: number): string[] {
+    const numberOfBreeds = this.getBreedNames().length;
+    const breedNames: string[] = [];
+
+    for (let i = 0; i < breedsNumber; i++) {
+      breedNames.push(
+        this.getBreedNames()[Math.round(Math.random() * numberOfBreeds)]
+      );
+    }
+
+    return breedNames;
+  }
 }
