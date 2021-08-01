@@ -1,17 +1,46 @@
 <div class="search">
   <h1 class="search-title">Dig & Discover Your Ideal Dog Breeds</h1>
-  <div class="search-action">
-    <input
-    class="search-action__input"
-    [(ngModel)]="breedName"
-    placeholder="Search for a breed"
-    (keyup.enter)="getDog()"
-    >
+    <form class="search-form">
+      <mat-form-field class="search-form__field" appearance="fill">
+        <input type="text"
+          matInput
+          placeholder="Find a breed"
+          [formControl]="formControl"
+          [matAutocomplete]="auto"
+          (keyup.enter)="openBreedInfo()"
+          (focusout)="refreshFormControl()"
+          >
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">     
+          <mat-option *ngFor="let breed of filteredBreedNames | async" [value]="breed">
+            {{breed}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
+
+    <!-- <form class="example-form">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <input
+        matInput
+        [formControl]="formControl"
+        class="search-action__input"
+        placeholder="Search for a breed"
+        (keyup.enter)="getDog()"
+        >
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+      <mat-option *ngFor="let breed of filteredBreedNames | async" [value]="breedNames">
+        {{breed}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form> -->
+
+
     <!-- <button 
     class="search-action__button"
     color="primary"
     mat-raised-button
     (click)="getDog()">Show Dogs</button> -->
-  </div>
+
 </div>
 <img src="assets/img/dog-main.png" alt="">
