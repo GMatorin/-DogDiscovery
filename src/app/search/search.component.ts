@@ -43,8 +43,6 @@ export class SearchComponent implements OnInit {
   }
 
   openBreedInfo() {
-    console.log(this.formControl.value);
-
     this.router.navigate(['/dog-breed', { breedName: this.formControl.value }]);
   }
 
