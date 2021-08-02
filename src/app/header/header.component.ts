@@ -34,4 +34,8 @@ export class HeaderComponent implements OnChanges {
       this.navigateToSearch();
     }
   }
+
+  toSignUp(): void {
+    this.router.navigate(['sign-up'], { relativeTo: this.route });
+  }
 }

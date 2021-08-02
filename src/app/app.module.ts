@@ -13,6 +13,7 @@ import { SearchComponent } from './search/search.component';
 import { HeaderComponent } from './header/header.component';
 import { MatInputModule } from '@angular/material/input';
 import { ExploreComponent } from './explore/explore.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ExploreComponent } from './explore/explore.component';
     SearchComponent,
     HeaderComponent,
     ExploreComponent,
+    SignUpComponent,
   ],
   imports: [
     BrowserModule,
