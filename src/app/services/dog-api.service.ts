@@ -57,8 +57,7 @@ export class DogApiService {
       map((imagesResponse) => {
         // imagesResponse.hits[0].webformatURL
         return (
-          imagesResponse.hits[0]?.largeImageURL ??
-          '../../assets/img/fallBackImg.png'
+          imagesResponse.hits[0]?.largeImageURL ?? 'assets/img/fallBackImg.png'
         );
       })
     );
