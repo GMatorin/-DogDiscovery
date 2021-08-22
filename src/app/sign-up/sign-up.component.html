@@ -5,29 +5,45 @@
             <img src="assets/img/dog-main.png" alt="">
         </div>
         <div class="sign-up__main-right">
-            <form class="sign-up__main-right-form">
+            <form [formGroup]="signUpForm"
+            (submit)="submit()"
+            class="sign-up__main-right-form">
                 <mat-form-field appearance="outline">
                     <mat-label>First Name</mat-label>
-                    <input matInput placeholder="Placeholder">
-                    <!-- <mat-hint>Hint</mat-hint> -->
+                    <input 
+                    formControlName="firstName" required
+                    matInput placeholder="Placeholder">
                   </mat-form-field>
                   <mat-form-field appearance="outline">
                     <mat-label>Last Name</mat-label>
-                    <input matInput placeholder="Placeholder">
+                    <input 
+                    formControlName="lastName" required
+                    matInput placeholder="Placeholder">
                   </mat-form-field>
                   <mat-form-field appearance="outline">
                     <mat-label>Email</mat-label>
-                    <input matInput placeholder="Placeholder">
+                    <input 
+                    formControlName="email" required
+                    matInput placeholder="Placeholder">
                   </mat-form-field>
                   <mat-form-field appearance="outline">
                     <mat-label>Password</mat-label>
-                    <input matInput placeholder="Placeholder">
+                    <input 
+                    [type]="'password'"
+                    formControlName="password" required
+                    matInput placeholder="Placeholder">
                   </mat-form-field>
                   <mat-form-field appearance="outline">
                     <mat-label>Re-Enter Password</mat-label>
-                    <input matInput placeholder="Placeholder">
+                    <input 
+                    [type]="'password'"
+                    formControlName="passwordConfirm" required
+                    matInput placeholder="Placeholder">
+                    <mat-error *ngIf="signUpForm.controls.passwordConfirm.hasError('mismatch')">
+                      Passwords do not match
+                    </mat-error>  
                   </mat-form-field>
-                  <button mat-flat-button>Start Digging!</button>
+                  <button type="submit" mat-flat-button>Start Digging!</button>
                   <button class="sign-up__main-right-form-cancel" mat-stroked-button>Cancel</button>
             </form>
         </div>

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { Account } from 'src/shared/models/account.model';
 import { Breed } from 'src/shared/models/breed.model';
+import { EMockApiErrors } from 'src/shared/models/EMockApiErrors.enum';
 import { EEndpoints } from 'src/shared/utils/EEndpoint.enum';
 import { DogApiService } from './dog-api.service';
 
@@ -70,5 +72,32 @@ export class MockDbService {
     }
 
     return breedNames;
+  }
+
+  getAccountByEmail(accountEmail: string, password?: string): Account {
+    const accounts: Account[] = JSON.parse(
+      localStorage.getItem(EEndpoints.ACCOUNTS) ?? '[]'
+    );
+
+    const account: Account | undefined = accounts.find(
+      (acc) => acc.email === accountEmail
+    );
+
+    if (!account) {
+      throw new Error(EMockApiErrors.ACCOUNT_NOT_FOUND);
+    }
+
+    if (password && account.password !== password) {
+      throw new Error(EMockApiErrors.WRONG_PASSWORD);
+    }
+
+    return account;
+  }
+
+  saveAccount(account: Account): void {
+    const findAccount: Account = this.getAccountByEmail(account.email);
+
+    if (findAccount) {
+    }
   }
 }
