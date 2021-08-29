@@ -6,6 +6,8 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Account } from 'src/shared/models/account.model';
 import { AccountService } from '../services/account.service';
 
@@ -18,7 +20,10 @@ export class SignUpComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private _snackBar: MatSnackBar,
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -53,14 +58,24 @@ export class SignUpComponent implements OnInit {
   }
 
   saveAccount(): void {
-    this.accountService.saveAccount(
-      new Account(
-        this.signUpForm.controls.firstName.value,
-        this.signUpForm.controls.lastName.value,
-        this.signUpForm.controls.email.value,
-        this.signUpForm.controls.password.value,
-        this.signUpForm.controls.passwordConfirm.value
-      )
-    );
+    try {
+      this.accountService.saveAccount(
+        new Account(
+          this.signUpForm.controls.firstName.value,
+          this.signUpForm.controls.lastName.value,
+          this.signUpForm.controls.email.value,
+          this.signUpForm.controls.password.value,
+          this.signUpForm.controls.passwordConfirm.value
+        )
+      );
+      this.router.navigate(['dog-search'], { relativeTo: this.route });
+    } catch (err) {
+      this._snackBar.open(err.message, 'Close');
+    }
+  }
+
+  cancel(): void {
+    this.signUpForm.reset();
+    this._snackBar.open('Cleared all fields', 'Close');
   }
 }

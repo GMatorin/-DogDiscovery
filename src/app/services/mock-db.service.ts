@@ -74,14 +74,8 @@ export class MockDbService {
     return breedNames;
   }
 
-  getAccountByEmail(accountEmail: string, password?: string): Account {
-    const accounts: Account[] = JSON.parse(
-      localStorage.getItem(EEndpoints.ACCOUNTS) ?? '[]'
-    );
-
-    const account: Account | undefined = accounts.find(
-      (acc) => acc.email === accountEmail
-    );
+  getAccountByCredentials(accountEmail: string, password: string): Account {
+    const account: Account | undefined = this.getAccountByEmail(accountEmail);
 
     if (!account) {
       throw new Error(EMockApiErrors.ACCOUNT_NOT_FOUND);
@@ -94,10 +88,31 @@ export class MockDbService {
     return account;
   }
 
-  saveAccount(account: Account): void {
-    const findAccount: Account = this.getAccountByEmail(account.email);
+  getAccountByEmail(accountEmail: string): Account | undefined {
+    const accounts: Account[] = JSON.parse(
+      localStorage.getItem(EEndpoints.ACCOUNTS) ?? '[]'
+    );
 
-    if (findAccount) {
+    const account: Account | undefined = accounts.find(
+      (acc) => acc.email === accountEmail
+    );
+
+    return account;
+  }
+
+  saveAccount(account: Account): Observable<Account> {
+    if (this.getAccountByEmail(account.email)) {
+      throw new Error(EMockApiErrors.ACCOUNT_EXISTS);
     }
+
+    const accounts: Account[] = JSON.parse(
+      localStorage.getItem(EEndpoints.ACCOUNTS) ?? '[]'
+    );
+
+    accounts.push(account);
+
+    localStorage.setItem(EEndpoints.ACCOUNTS, JSON.stringify(accounts));
+
+    return of(account);
   }
 }

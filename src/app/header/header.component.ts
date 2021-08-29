@@ -1,18 +1,26 @@
-import { Component, OnChanges } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { AccountService } from '../services/account.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnChanges {
+export class HeaderComponent implements OnChanges, OnInit {
   title: string = 'Dog Discovery';
-  isExploreSelected$: Observable<boolean> = new Observable();
+  isExploreSelected$: Observable<boolean>;
+  isLoggedIn$: Observable<boolean> = this.accountService.isLoggedIn();
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private accountService: AccountService
+  ) {}
+
+  ngOnInit() {}
 
   // ToDo: fix mat-tab bug: when using company logo to navigate out the active tab stays selected
   ngOnChanges() {
@@ -37,5 +45,9 @@ export class HeaderComponent implements OnChanges {
 
   toSignUp(): void {
     this.router.navigate(['sign-up'], { relativeTo: this.route });
+  }
+
+  toAccount(): void {
+    this.router.navigate(['account'], { relativeTo: this.route });
   }
 }
