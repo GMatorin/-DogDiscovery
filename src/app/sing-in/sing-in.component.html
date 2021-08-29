@@ -1,0 +1,29 @@
+<div class="sign-in">
+    <h2 class="sign-in-header">Welcome Back!</h2>
+    <div class="sign-in__main">
+        <div class="sign-in__main-left">
+            <img src="assets/img/dog-main.png" alt="">
+        </div>
+        <div class="sign-in__main-right">
+            <form [formGroup]="signInForm"
+            (submit)="submit()"
+            class="sign-in__main-right-form">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input 
+                    formControlName="email" required
+                    matInput placeholder="Placeholder">
+                  </mat-form-field>
+                  <mat-form-field appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input 
+                    [type]="'password'"
+                    formControlName="password" required
+                    matInput placeholder="Placeholder">
+                  </mat-form-field>
+                  <button class="sign-in__main-right-form__submit" type="submit" mat-flat-button>Get Back To Digging!</button>
+                  <button class="sign-in__main-right-form__cancel" (click)="cancel()" class="sign-in__main-right-form-cancel" mat-stroked-button>Sign Up</button>
+            </form>
+        </div>
+    </div>
+</div>

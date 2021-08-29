@@ -35,4 +35,18 @@ export class AccountService {
   isLoggedIn(): Observable<boolean> {
     return this.isLoggedIn$.asObservable();
   }
+
+  logIn(email: string, password: string): void {
+    this.mockDbService
+      .getAccountByCredentials(email, password)
+      .pipe(
+        filter((acc) => !!acc),
+        switchMap((account) => {
+          this.currentAccount$.next(account);
+          this.isLoggedIn$.next(true);
+          return of(account);
+        })
+      )
+      .subscribe();
+  }
 }

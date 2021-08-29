@@ -47,6 +47,10 @@ export class HeaderComponent implements OnChanges, OnInit {
     this.router.navigate(['sign-up'], { relativeTo: this.route });
   }
 
+  toSignIn(): void {
+    this.router.navigate(['sign-in'], { relativeTo: this.route });
+  }
+
   toAccount(): void {
     this.router.navigate(['account'], { relativeTo: this.route });
   }
