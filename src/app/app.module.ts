@@ -16,6 +16,7 @@ import { ExploreComponent } from './explore/explore.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AccountComponent } from './account/account.component';
+import { SignInComponent } from './sing-in/sing-in.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { AccountComponent } from './account/account.component';
     ExploreComponent,
     SignUpComponent,
     AccountComponent,
+    SignInComponent,
   ],
   imports: [
     BrowserModule,

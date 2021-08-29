@@ -74,7 +74,10 @@ export class MockDbService {
     return breedNames;
   }
 
-  getAccountByCredentials(accountEmail: string, password: string): Account {
+  getAccountByCredentials(
+    accountEmail: string,
+    password: string
+  ): Observable<Account> {
     const account: Account | undefined = this.getAccountByEmail(accountEmail);
 
     if (!account) {
@@ -85,7 +88,7 @@ export class MockDbService {
       throw new Error(EMockApiErrors.WRONG_PASSWORD);
     }
 
-    return account;
+    return of(account);
   }
 
   getAccountByEmail(accountEmail: string): Account | undefined {

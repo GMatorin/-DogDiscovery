@@ -6,6 +6,7 @@ import { DogInfoModule } from './dog-info/dog-info.module';
 import { ExploreComponent } from './explore/explore.component';
 import { SearchComponent } from './search/search.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { SignInComponent } from './sing-in/sing-in.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'explore', component: ExploreComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'account', component: AccountComponent },
+  { path: 'sign-in', component: SignInComponent },
   { path: '', redirectTo: 'dog-search', pathMatch: 'full' },
   { path: '**', redirectTo: 'dog-search', pathMatch: 'full' },
 ];
