@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AccountComponent } from './account/account.component';
 import { AuthModule } from './auth/auth.module';
 import { DogInfoModule } from './dog-info/dog-info.module';
 import { ExploreComponent } from './explore/explore.component';
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'dog-search', component: SearchComponent },
   { path: 'explore', component: ExploreComponent },
   { path: 'sign-up', component: SignUpComponent },
+  { path: 'account', component: AccountComponent },
   { path: '', redirectTo: 'dog-search', pathMatch: 'full' },
   { path: '**', redirectTo: 'dog-search', pathMatch: 'full' },
 ];

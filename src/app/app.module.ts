@@ -14,6 +14,8 @@ import { HeaderComponent } from './header/header.component';
 import { MatInputModule } from '@angular/material/input';
 import { ExploreComponent } from './explore/explore.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { AccountComponent } from './account/account.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     HeaderComponent,
     ExploreComponent,
     SignUpComponent,
+    AccountComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,6 +38,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     MatAutocompleteModule,
     ReactiveFormsModule,
     MatInputModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
