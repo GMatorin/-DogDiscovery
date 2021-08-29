@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { Account } from 'src/shared/models/account.model';
 import { Breed } from 'src/shared/models/breed.model';
+import { EMockApiErrors } from 'src/shared/models/EMockApiErrors.enum';
 import { EEndpoints } from 'src/shared/utils/EEndpoint.enum';
 import { DogApiService } from './dog-api.service';
 
@@ -70,5 +72,47 @@ export class MockDbService {
     }
 
     return breedNames;
+  }
+
+  getAccountByCredentials(accountEmail: string, password: string): Account {
+    const account: Account | undefined = this.getAccountByEmail(accountEmail);
+
+    if (!account) {
+      throw new Error(EMockApiErrors.ACCOUNT_NOT_FOUND);
+    }
+
+    if (password && account.password !== password) {
+      throw new Error(EMockApiErrors.WRONG_PASSWORD);
+    }
+
+    return account;
+  }
+
+  getAccountByEmail(accountEmail: string): Account | undefined {
+    const accounts: Account[] = JSON.parse(
+      localStorage.getItem(EEndpoints.ACCOUNTS) ?? '[]'
+    );
+
+    const account: Account | undefined = accounts.find(
+      (acc) => acc.email === accountEmail
+    );
+
+    return account;
+  }
+
+  saveAccount(account: Account): Observable<Account> {
+    if (this.getAccountByEmail(account.email)) {
+      throw new Error(EMockApiErrors.ACCOUNT_EXISTS);
+    }
+
+    const accounts: Account[] = JSON.parse(
+      localStorage.getItem(EEndpoints.ACCOUNTS) ?? '[]'
+    );
+
+    accounts.push(account);
+
+    localStorage.setItem(EEndpoints.ACCOUNTS, JSON.stringify(accounts));
+
+    return of(account);
   }
 }

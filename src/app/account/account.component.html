@@ -1,0 +1,10 @@
+<h2>
+    Account
+</h2>
+
+<div *ngIf="account$ | async as account" class="account-info">
+    <p>{{ account.firstName }}</p>
+    <p>{{ account.lastName }}</p>
+    <p>{{ account.email }}</p>
+    <p>{{ account.savedBreeds }}</p>
+</div>
