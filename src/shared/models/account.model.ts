@@ -16,6 +16,6 @@ export class Account {
     this.lastName = lastName;
     this.email = email;
     this.password = password;
-    this.savedBreeds = savedBreeds;
+    this.savedBreeds = savedBreeds ?? [];
   }
 }

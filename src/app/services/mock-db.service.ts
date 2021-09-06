@@ -100,6 +100,10 @@ export class MockDbService {
       (acc) => acc.email === accountEmail
     );
 
+    if (!account) {
+      throw new Error(EMockApiErrors.EMAIL_NOT_EXIST);
+    }
+
     return account;
   }
 
