@@ -18,6 +18,7 @@ import { MockDbService } from '../services/mock-db.service';
 import { DogApiService } from '../services/dog-api.service';
 import { map, mergeMap, takeUntil } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { AccountService } from '../services/account.service';
 
 @Component({
   templateUrl: './explore.component.html',
@@ -27,13 +28,15 @@ import { Router } from '@angular/router';
 export class ExploreComponent implements OnInit, OnDestroy {
   private untilDestroyed$: Subject<void> = new Subject();
 
+  public isLoggedIn$: Observable<boolean> = this.accountService.isLoggedIn();
   public breedNames: string[] = [];
   public exploreTiles$: Observable<IExploreTile[]> = new Observable();
 
   constructor(
     private dogApiService: DogApiService,
     private mockDbService: MockDbService,
-    private router: Router
+    private router: Router,
+    private accountService: AccountService
   ) {}
 
   ngOnInit() {
@@ -54,6 +57,10 @@ export class ExploreComponent implements OnInit, OnDestroy {
 
   toBreedDetails(tile: IExploreTile): void {
     this.router.navigate(['/dog-breed', { breedName: tile.breedName }]);
+  }
+
+  saveBreed(tile: IExploreTile) {
+    this.accountService.saveBreed(tile.breedName);
   }
 
   ngOnDestroy() {

@@ -4,11 +4,17 @@
                 <div 
                 *ngFor="let tile of tiles" 
                 class="explore-tiles__tile"
-                (click)=toBreedDetails(tile)>
-                    <img class="explore-tiles__tile-image" [src]="tile.imageUrl" alt="">
+                >
+                    <img 
+                    (click)="toBreedDetails(tile)"
+                    class="explore-tiles__tile-image" 
+                    [src]="tile.imageUrl" 
+                    alt="">
                     <div class="explore-tiles__tile-info">
                         <p class="explore-tiles__tile-info__breed">{{tile.breedName}}</p>
-                        <p class="explore-tiles__tile-info__icon">X</p>
+                        <p class="explore-tiles__tile-info__icon"
+                        *ngIf="isLoggedIn$ | async" 
+                        (click)="saveBreed(tile)">X</p>
                     </div>
                 </div>
         </ng-container>

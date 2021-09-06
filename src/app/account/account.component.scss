@@ -1,0 +1,12 @@
+.account {
+  display: flex;
+  margin: 20px 100px 0px 100px;
+  justify-content: space-between;
+
+  &-info {
+    flex-basis: 30%;
+  }
+  &-dogs {
+    flex-basis: 60%;
+  }
+}
