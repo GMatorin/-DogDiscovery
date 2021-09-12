@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { combineLatest, forkJoin, Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { Account } from 'src/shared/models/account.model';
@@ -19,7 +20,8 @@ export class AccountComponent implements OnInit {
 
   constructor(
     private accountService: AccountService,
-    private dogApiService: DogApiService
+    private dogApiService: DogApiService,
+    private router: Router
   ) {}
 
   public ngOnInit() {
@@ -41,17 +43,9 @@ export class AccountComponent implements OnInit {
         });
       })
     );
-    // forkJoin(
-    //   this.breedNames.map((names, index) =>
-    //     this.dogApiService.getDogPhoto(names + ' dog').pipe(
-    //       map((imageUrl) => {
-    //         return {
-    //           breedName: this.breedNames[index],
-    //           imageUrl: imageUrl,
-    //         } as IExploreTile;
-    //       })
-    //     )
-    //   )
-    // );
+  }
+
+  toBreedDetails(tile: IExploreTile): void {
+    this.router.navigate(['/dog-breed', { breedName: tile.breedName }]);
   }
 }
