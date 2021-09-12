@@ -103,15 +103,16 @@ export class MockDbService {
     return account;
   }
 
-  saveAccount(account: Account): Observable<Account> {
-    if (this.getAccountByEmail(account.email)) {
+  saveAccount(account: Account, updateAccount?: boolean): Observable<Account> {
+    if (!updateAccount && this.getAccountByEmail(account.email)) {
       throw new Error(EMockApiErrors.ACCOUNT_EXISTS);
     }
 
-    const accounts: Account[] = JSON.parse(
+    let accounts: Account[] = JSON.parse(
       localStorage.getItem(EEndpoints.ACCOUNTS) ?? '[]'
     );
 
+    accounts = accounts.filter((acc) => acc.email !== account.email);
     accounts.push(account);
 
     localStorage.setItem(EEndpoints.ACCOUNTS, JSON.stringify(accounts));

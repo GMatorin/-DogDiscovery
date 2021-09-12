@@ -1,10 +1,40 @@
-<h2>
-    Account
-</h2>
-
-<div *ngIf="account$ | async as account" class="account-info">
-    <p>{{ account.firstName }}</p>
-    <p>{{ account.lastName }}</p>
-    <p>{{ account.email }}</p>
-    <p>{{ account.savedBreeds }}</p>
+<div *ngIf="account$ | async as account" class="account">
+    <div class="account-info">
+        <h2>
+            Your Account
+        </h2>
+        
+        <div class="account-info__details">
+            <div>
+                <h3>First Name: </h3>
+                <p> {{ account.firstName }}</p>
+            </div>
+            <div>
+                <h3>Last Name: </h3>
+                <p> {{ account.lastName }}</p>
+            </div>
+            <div>
+                <h3>Email: </h3>
+                <p> {{ account.email }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="account-tiles">
+        <h2 class="account-tiles_heading">Saved dog breeds</h2>
+        <div class="account-tiles__breeds" *ngIf="exploreTiles$ | async as tiles">
+            <div 
+            *ngFor="let tile of tiles" 
+            class="account-tiles__breeds-tile"
+            >
+                <img 
+                (click)="toBreedDetails(tile)"
+                class="account-tiles__breeds-tile-image" 
+                [src]="tile.imageUrl" 
+                alt="">
+                <div class="account-tiles__breeds-tile-info">
+                    <p class="account-tiles__breeds-tile-info__breed">{{tile.breedName}}</p>
+                </div>
+            </div>
+    </div>
+</div>
 </div>

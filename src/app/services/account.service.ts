@@ -2,6 +2,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { filter, map, switchMap, take } from 'rxjs/operators';
 import { Account } from 'src/shared/models/account.model';
+import { EMockApiErrors } from 'src/shared/models/EMockApiErrors.enum';
 import { MockDbService } from './mock-db.service';
 
 @Injectable({ providedIn: 'root' })
@@ -48,5 +49,18 @@ export class AccountService {
         })
       )
       .subscribe();
+  }
+
+  saveBreed(breedName: string): void {
+    const currentAccount = this.currentAccount$.value;
+    if (!currentAccount) {
+      throw new Error(EMockApiErrors.ACCOUNT_NOT_FOUND);
+    }
+    if (!currentAccount.savedBreeds.includes(breedName)) {
+      currentAccount?.savedBreeds.push(breedName);
+      this.currentAccount$.next(currentAccount);
+
+      this.mockDbService.saveAccount(currentAccount, true);
+    }
   }
 }
