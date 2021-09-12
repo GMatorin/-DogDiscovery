@@ -5,34 +5,36 @@
         </h2>
         
         <div class="account-info__details">
-            <p>{{ account.firstName }}</p>
-            <p>{{ account.lastName }}</p>
-            <p>{{ account.email }}</p>
+            <div>
+                <h3>First Name: </h3>
+                <p> {{ account.firstName }}</p>
+            </div>
+            <div>
+                <h3>Last Name: </h3>
+                <p> {{ account.lastName }}</p>
+            </div>
+            <div>
+                <h3>Email: </h3>
+                <p> {{ account.email }}</p>
+            </div>
         </div>
     </div>
-    <!-- <div 
-    *ngIf="account.savedBreeds.length > 0"
-    class="account-dogs">
-        <div *ngFor="let breed of account.savedBreeds" class="account-dogs__breed">
-            <h3 class="account-dogs__breed-name"></h3>
-            <p class="account-dogs__breed-size">{{breed}}</p>
-        </div>
-    </div> -->
     <div class="account-tiles">
-        <ng-container *ngIf="exploreTiles$ | async as tiles">
+        <h2 class="account-tiles_heading">Saved dog breeds</h2>
+        <div class="account-tiles__breeds" *ngIf="exploreTiles$ | async as tiles">
             <div 
             *ngFor="let tile of tiles" 
-            class="explore-tiles__tile"
+            class="account-tiles__breeds-tile"
             >
                 <img 
-                class="explore-tiles__tile-image" 
+                (click)="toBreedDetails(tile)"
+                class="account-tiles__breeds-tile-image" 
                 [src]="tile.imageUrl" 
                 alt="">
-                <div class="explore-tiles__tile-info">
-                    <p class="explore-tiles__tile-info__breed">{{tile.breedName}}</p>
-
+                <div class="account-tiles__breeds-tile-info">
+                    <p class="account-tiles__breeds-tile-info__breed">{{tile.breedName}}</p>
                 </div>
             </div>
-    </ng-container>
+    </div>
 </div>
 </div>

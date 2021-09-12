@@ -12,9 +12,10 @@
                     alt="">
                     <div class="explore-tiles__tile-info">
                         <p class="explore-tiles__tile-info__breed">{{tile.breedName}}</p>
-                        <p class="explore-tiles__tile-info__icon"
+                        <button class="explore-tiles__tile-info__button"
+                        mat-stroked-button
                         *ngIf="isLoggedIn$ | async" 
-                        (click)="saveBreed(tile)">X</p>
+                        (click)="saveBreed(tile)">Save breed</button>
                     </div>
                 </div>
         </ng-container>
