@@ -53,13 +53,14 @@ export class AccountService {
 
   saveBreed(breedName: string): void {
     const currentAccount = this.currentAccount$.value;
-    if (!!currentAccount) {
+    if (!currentAccount) {
+      throw new Error(EMockApiErrors.ACCOUNT_NOT_FOUND);
+    }
+    if (!currentAccount.savedBreeds.includes(breedName)) {
       currentAccount?.savedBreeds.push(breedName);
       this.currentAccount$.next(currentAccount);
 
-      this.mockDbService.saveAccount(currentAccount);
-    } else {
-      throw new Error(EMockApiErrors.ACCOUNT_NOT_FOUND);
+      this.mockDbService.saveAccount(currentAccount, true);
     }
   }
 }

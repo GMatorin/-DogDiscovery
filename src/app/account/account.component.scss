@@ -6,7 +6,33 @@
   &-info {
     flex-basis: 30%;
   }
-  &-dogs {
+  // &-dogs {
+  // }
+
+  &-tiles {
     flex-basis: 60%;
   }
+
+  // &-tiles {
+  //   display: grid;
+  //   margin-top: 50px;
+  //   grid-template-columns: repeat(2, 1fr);
+  //   grid-column: 2/8;
+  //   grid-gap: 70px;
+  //   &__tile {
+  //     background-color: #f7fcfb;
+  //     cursor: pointer;
+  //     border: 2px solid #38bfa0;
+  //     &-image {
+  //       width: 100%;
+  //       min-height: 220px;
+  //       max-height: 450px;
+  //       object-fit: cover;
+  //     }
+  //     &-info {
+  //       display: flex;
+  //       justify-content: space-around;
+  //     }
+  //   }
+  // }
 }

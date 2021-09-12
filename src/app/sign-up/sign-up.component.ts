@@ -64,8 +64,7 @@ export class SignUpComponent implements OnInit {
           this.signUpForm.controls.firstName.value,
           this.signUpForm.controls.lastName.value,
           this.signUpForm.controls.email.value,
-          this.signUpForm.controls.password.value,
-          this.signUpForm.controls.passwordConfirm.value
+          this.signUpForm.controls.password.value
         )
       );
       this.router.navigate(['dog-search'], { relativeTo: this.route });
