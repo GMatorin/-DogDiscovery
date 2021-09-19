@@ -20,6 +20,7 @@
         *ngIf="!(isLoggedIn$ | async); else loggedIn"
         class="header-actions__auth">
             <button 
+            class="header-actions__auth-signup"
             mat-raised-button 
             color="primary"
             (click)="toSignUp()"
@@ -30,21 +31,23 @@
           >Sign In</button>
         </div>
         <ng-template #loggedIn>
-            <div
-            class="header-actions__auth">
-                <button 
-                mat-raised-button 
-                color="primary"
-                (click)="toAccount()"
-               >My Account</button>
-            </div>
-            <div
-            class="header-actions__logout">
-                <button 
-                mat-stroked-button
-                color="primary"
-                (click)="logout()"
-               >My Account</button>
+            <div class="header-actions__auth">
+                <div
+                class="header-actions__auth-account">
+                    <button 
+                    mat-raised-button 
+                    color="primary"
+                    (click)="toAccount()"
+                   >My Account</button>
+                </div>
+                <div
+                class="header-actions__auth-logout">
+                    <button 
+                    mat-stroked-button
+                    color="primary"
+                    (click)="logout()"
+                   >Log Out</button>
+                </div>
             </div>
         </ng-template>
     </div>
