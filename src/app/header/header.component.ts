@@ -54,4 +54,9 @@ export class HeaderComponent implements OnChanges, OnInit {
   toAccount(): void {
     this.router.navigate(['account'], { relativeTo: this.route });
   }
+
+  logout(): void {
+    this.accountService.logout();
+    this.router.navigate(['dog-search'], { relativeTo: this.route });
+  }
 }
