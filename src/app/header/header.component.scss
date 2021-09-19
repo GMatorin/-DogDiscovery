@@ -36,14 +36,16 @@
     }
 
     &__auth {
+      display: flex;
       margin-right: 37px;
       button {
         font-size: $f-size-main !important;
-        &:first-child {
-          margin-right: 25px;
-        }
         width: 125px;
         height: 40px;
+      }
+      &-signup,
+      &-account {
+        margin-right: 25px;
       }
     }
   }

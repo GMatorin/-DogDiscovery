@@ -51,6 +51,11 @@ export class AccountService {
       .subscribe();
   }
 
+  logout(): void {
+    this.isLoggedIn$.next(false);
+    this.currentAccount$.next(null);
+  }
+
   saveBreed(breedName: string): void {
     const currentAccount = this.currentAccount$.value;
     if (!currentAccount) {
