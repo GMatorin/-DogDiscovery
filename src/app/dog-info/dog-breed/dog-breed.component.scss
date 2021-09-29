@@ -4,12 +4,19 @@
   margin: 50px 136px;
   font-size: $f-size-middle;
 
+  button {
+    font-size: $f-size-main;
+  }
+
   &-head {
     h2 {
       font-size: 60px;
     }
 
     &__back {
+      button {
+        height: 56px;
+      }
       p {
         cursor: pointer;
       }
@@ -47,7 +54,6 @@
 
           button {
             margin-top: 24px;
-            width: 145px;
             height: 56px;
             justify-self: flex-end;
             margin-left: auto;

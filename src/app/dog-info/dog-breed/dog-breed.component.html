@@ -1,9 +1,12 @@
 <div class="breed">
     <div class="breed-head">
         <div class="breed-head__back">
-            <p (click)="navigateToSearch()">
-                return to search
-            </p>
+            <button 
+            type="submit"
+            mat-flat-button
+            color="primary"
+            (click)="navigateToSearch()"
+             >Return To Search!</button>
         </div>
         <h2>{{breedName}}</h2>
     </div>
@@ -33,7 +36,10 @@
             <div class="breed-info__right-form">
                 <div class="form-field">
                     <textarea class="form-field__textarea"></textarea>
-                    <button>Sub</button>
+                    <button
+                    mat-flat-button
+                    color="primary"
+                    >Save Description</button>
                 </div>
             </div>
         </div>
