@@ -8,7 +8,7 @@ import { DogApiService } from './dog-api.service';
 
 @Injectable({ providedIn: 'root' })
 export class MockDbService {
-  additionalBreeds: string[] = ['borzoi'];
+  additionalBreeds: string[] = ['Borzoi'];
 
   constructor(private dogApiService: DogApiService) {
     this.saveAllBreedInfos();
